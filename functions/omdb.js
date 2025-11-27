@@ -1,4 +1,4 @@
-const fetch = require("node-fetch"); // Netlify function runtime requires node-fetch
+const fetch = require("node-fetch");
 
 const API_KEY = process.env.OMDB_API_KEY;
 
@@ -13,7 +13,10 @@ exports.handler = async function(event, context) {
     }
 
     try {
-        const response = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&t=${encodeURIComponent(title)}`);
+        const response = await fetch(
+            `https://www.omdbapi.com/?apikey=${API_KEY}&t=${encodeURIComponent(title)}`
+        );
+
         const data = await response.json();
 
         return {
